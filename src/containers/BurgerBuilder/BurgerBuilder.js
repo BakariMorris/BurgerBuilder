@@ -135,16 +135,15 @@ class BurgerBuilder extends Component {
         let orderSummary = null;
         let burger = <Spinner />;
         
-        console.log(this.props.ings, 'Prop ingredients');
         if(this.props.ings) {
             burger = (
                 <Aux>
                     <Burger ingredients={this.props.ings}></Burger>
                     <BuildControls 
                         ingredientAdded={this.props.onIngredientAdded} 
-                        ingredientRemoved={this.onIngredientRemoved}
+                        ingredientRemoved={this.props.onIngredientRemoved}
                         disabled={disabledInfo}
-                        purchasable={this.state.purchaseable}
+                        purchasable={this.props.purchasable}
                         price={this.state.totalPrice}
                         ordered={this.purchaseHandler} />
                         
@@ -179,7 +178,8 @@ class BurgerBuilder extends Component {
 
 const mapStateToProps = state => {
     return {
-        ings: state.ingredients
+        ings: state.ingredients,
+        purchasable: state.purchasable
     };
 }
 
